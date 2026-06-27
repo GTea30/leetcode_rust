@@ -74,7 +74,7 @@ impl Solution {
         // Increments all other numbers to match the 0 index
         while i < nums.len() {
             new_vec.push(nums[i]);
-            while new_vec[i] > nums[0] {
+            while new_vec[i] < nums[0] {
                 new_vec[i] += 1;
                 count += 1;
             }
@@ -150,4 +150,10 @@ fn test_03() {
 fn test_04() {
     let nums = vec![7, 4, 2, 8, 1, 7, 7, 10];
     assert_eq!(Solution::min_operations(nums), 38);
+}
+
+#[test]
+fn test_05() {
+    let nums = vec![10, 2, 5];
+    assert_eq!(Solution::min_operations(nums), 16)
 }
