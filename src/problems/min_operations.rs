@@ -1,3 +1,5 @@
+use std::vec;
+
 use crate::problems::Solution;
 
 impl Solution {
@@ -13,39 +15,16 @@ impl Solution {
     /// An array `nums` is strictly increasion if `nums[i] < nums[i+1]`` for all
     /// `0 <= i < nums.length - 1`. An array of length 1 is trivially strictly
     /// increasing
-    pub fn min_operations(mut nums: Vec<i32>) -> i32 {
-        let mut count = 0;
-        // Check if nums is strictly increasing.
-
-        // Find the index of the largest element. For [1, 5, 2, 4, 1], you'd
-        // find the value 5 for index 1
-        //
-        // TODO! When you have found the value, make two subvecs, one from [0...i] another from [i..-1]
-        let (index, largest_val) = Solution::find_largest_with_index(&nums);
-        //
-        // Increment the elements after i until they match i.
-        let mut i = index + 1;
-        while i < nums.len() {
-            if nums[i] < largest_val {
-                nums[i] = nums[i] + 1;
-                count += 1;
-            } else {
-                i += 1;
-            }
-        }
-        // Increment each element after i by ni - i times.
-        i = index + 1;
-        while i < nums.len() {
-            for _ in 0..(i - index) {
-                nums[i] = nums[i] + 1;
-                count += 1;
-            }
-        }
-
-        return count;
+    #[allow(unused)]
+    pub fn min_operations(nums: Vec<i32>) -> i32 {
+        let (inc_vec, sum) = Solution::recursivley_split_and_merge(&nums);
+        return sum;
     }
 
     fn is_strictly_increasing(nums: &Vec<i32>) -> bool {
+        if nums.len() == 0 {
+            return true;
+        }
         let mut i = 0;
         while i < (nums.len() - 1) {
             if nums[i] >= nums[i + 1] {
@@ -57,18 +36,94 @@ impl Solution {
         return true;
     }
 
-    fn find_largest_with_index(nums: &Vec<i32>) -> (usize, i32) {
+    fn recursivley_split_and_merge(nums: &Vec<i32>) -> (Vec<i32>, i32) {
+        // Checks to see if the vec is len <= 1 or otherwise strictly increasing
+        if nums.len() <= 1 {
+            return (nums.clone(), 0);
+        }
+
+        if Solution::is_strictly_increasing(nums) {
+            return (nums.clone(), 0);
+        }
+
+        // Checks if the first element is the largest, if not, split;
+        let highest_index = Solution::find_index_of_highest_value(nums);
+        if highest_index == 0 {
+            // Runs increment
+            return Solution::increment(nums);
+        } else {
+            // Splits
+            let (vec_a, vec_b) = Solution::split_at(nums, highest_index);
+            let (mut parsed_vec_a, a_acc) = Solution::recursivley_split_and_merge(&vec_a);
+            let (mut parsed_vec_b, b_acc) = Solution::recursivley_split_and_merge(&vec_b);
+
+            // Merges
+            parsed_vec_a.append(&mut parsed_vec_b);
+            let (parsed_merged_vec, merged_acc) =
+                Solution::recursivley_split_and_merge(&parsed_vec_a);
+            return (parsed_merged_vec, a_acc + b_acc + merged_acc);
+        }
+    }
+
+    /// Assumes that the largest number is at the start of the vec
+    fn increment(nums: &Vec<i32>) -> (Vec<i32>, i32) {
+        let mut count = 0;
+        let mut new_vec = vec![nums[0]];
+        let mut i = 1;
+
+        // Increments all other numbers to match the 0 index
+        while i < nums.len() {
+            new_vec.push(nums[i]);
+            while new_vec[i] > nums[0] {
+                new_vec[i] += 1;
+                count += 1;
+            }
+
+            i += 1;
+        }
+
+        i = 1;
+
+        while i < new_vec.len() {
+            new_vec[i] += i as i32;
+            count += i as i32;
+
+            i += 1;
+        }
+
+        return (new_vec, count);
+    }
+
+    fn split_at(nums: &Vec<i32>, split_at: usize) -> (Vec<i32>, Vec<i32>) {
+        let mut new_vec_a = vec![];
+        let mut new_vec_b = vec![];
+
+        let mut i = 0;
+        while i < nums.len() {
+            if i < split_at {
+                new_vec_a.push(nums[i])
+            } else {
+                new_vec_b.push(nums[i])
+            }
+            i += 1;
+        }
+
+        return (new_vec_a, new_vec_b);
+    }
+
+    fn find_index_of_highest_value(nums: &Vec<i32>) -> usize {
         let mut i = 0;
         let mut acc = 0;
         let mut acc_i = 0;
 
-        // while i < len(nums)
-
-        return (acc_i, acc);
-    }
-
-    fn recursively_split_by_largest_and_find_operation_count(nums: &Vec<i32>, acc: i32) -> i32 {
-        todo!()
+        while i < nums.len() {
+            if nums[i] > acc {
+                acc = nums[i];
+                acc_i = i
+            }
+            i += 1;
+        }
+        return acc_i;
     }
 }
 
@@ -85,7 +140,14 @@ fn test_02() {
     assert_eq!(Solution::min_operations(nums), 14);
 }
 
+#[test]
 fn test_03() {
     let nums = vec![8];
     assert_eq!(Solution::min_operations(nums), 0);
+}
+
+#[test]
+fn test_04() {
+    let nums = vec![7, 4, 2, 8, 1, 7, 7, 10];
+    assert_eq!(Solution::min_operations(nums), 38);
 }
