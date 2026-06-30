@@ -7,7 +7,7 @@ impl Solution {
     /// you can choose an element of the array and increment it by 1.
     ///
     /// - For example if `nums = [1, 2, 3]`, you can choose to increment
-    /// `nums[1]` to make `nums[1,3,3]`.
+    ///   `nums[1]` to make `nums[1,3,3]`.
     ///
     /// Return the *minimum* number of operations to make `nums` strictly
     /// increasing.
@@ -18,11 +18,11 @@ impl Solution {
     #[allow(unused)]
     pub fn min_operations(nums: Vec<i32>) -> i32 {
         let (inc_vec, sum) = Solution::recursivley_split_and_merge(&nums);
-        return sum;
+        sum
     }
 
-    fn is_strictly_increasing(nums: &Vec<i32>) -> bool {
-        if nums.len() == 0 {
+    fn is_strictly_increasing(nums: &[i32]) -> bool {
+        if nums.is_empty() {
             return true;
         }
         let mut i = 0;
@@ -33,9 +33,10 @@ impl Solution {
 
             i += 1;
         }
-        return true;
+        true
     }
 
+    #[allow(clippy::ptr_arg)]
     fn recursivley_split_and_merge(nums: &Vec<i32>) -> (Vec<i32>, i32) {
         // Checks to see if the vec is len <= 1 or otherwise strictly increasing
         if nums.len() <= 1 {
@@ -50,7 +51,7 @@ impl Solution {
         let highest_index = Solution::find_index_of_highest_value(nums);
         if highest_index == 0 {
             // Runs increment
-            return Solution::increment(nums);
+            Solution::increment(nums)
         } else {
             // Splits
             let (vec_a, vec_b) = Solution::split_at(nums, highest_index);
@@ -61,12 +62,12 @@ impl Solution {
             parsed_vec_a.append(&mut parsed_vec_b);
             let (parsed_merged_vec, merged_acc) =
                 Solution::recursivley_split_and_merge(&parsed_vec_a);
-            return (parsed_merged_vec, a_acc + b_acc + merged_acc);
+            (parsed_merged_vec, a_acc + b_acc + merged_acc)
         }
     }
 
     /// Assumes that the largest number is at the start of the vec
-    fn increment(nums: &Vec<i32>) -> (Vec<i32>, i32) {
+    fn increment(nums: &[i32]) -> (Vec<i32>, i32) {
         let mut count = 0;
         let mut new_vec = vec![nums[0]];
         let mut i = 1;
@@ -91,10 +92,10 @@ impl Solution {
             i += 1;
         }
 
-        return (new_vec, count);
+        (new_vec, count)
     }
 
-    fn split_at(nums: &Vec<i32>, split_at: usize) -> (Vec<i32>, Vec<i32>) {
+    fn split_at(nums: &[i32], split_at: usize) -> (Vec<i32>, Vec<i32>) {
         let mut new_vec_a = vec![];
         let mut new_vec_b = vec![];
 
@@ -108,10 +109,10 @@ impl Solution {
             i += 1;
         }
 
-        return (new_vec_a, new_vec_b);
+        (new_vec_a, new_vec_b)
     }
 
-    fn find_index_of_highest_value(nums: &Vec<i32>) -> usize {
+    fn find_index_of_highest_value(nums: &[i32]) -> usize {
         let mut i = 0;
         let mut acc = 0;
         let mut acc_i = 0;
@@ -123,7 +124,7 @@ impl Solution {
             }
             i += 1;
         }
-        return acc_i;
+        acc_i
     }
 }
 

@@ -25,9 +25,10 @@ impl Solution {
         mut list1: Option<Box<ListNode>>,
         mut list2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        return Solution::recursively_merge_lists(list1.as_ref(), list2.as_ref());
+        Solution::recursively_merge_lists(list1.as_ref(), list2.as_ref())
     }
 
+    #[allow(clippy::borrowed_box)]
     fn recursively_merge_lists(
         list1: Option<&Box<ListNode>>,
         list2: Option<&Box<ListNode>>,
@@ -57,13 +58,13 @@ impl Solution {
                 }
             }
         }
-        return new_node;
+        new_node
     }
 }
 
 #[cfg(test)]
 fn list_node_from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
-    if vec.len() == 0 {
+    if vec.is_empty() {
         return None;
     }
     let mut new_list_node_root = ListNode::new(vec[0]);
@@ -79,7 +80,7 @@ fn list_node_from_vec(vec: Vec<i32>) -> Option<Box<ListNode>> {
         i += 1;
     }
 
-    return Some(Box::new(new_list_node_root));
+    Some(Box::new(new_list_node_root))
 }
 
 #[cfg(test)]

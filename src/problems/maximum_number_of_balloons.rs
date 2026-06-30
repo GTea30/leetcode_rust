@@ -6,7 +6,7 @@ impl Solution {
     #[allow(unused)]
     pub fn max_number_of_balloons(text: String) -> i32 {
         let count = Solution::find_baloon_with_loop(text);
-        return count as i32;
+        count as i32
     }
 
     // Find string "balloon", and remove the letters used
@@ -26,7 +26,7 @@ impl Solution {
                     work_string.remove(i);
                     test_string.remove(i2);
 
-                    if test_string.len() == 0 {
+                    if test_string.is_empty() {
                         count += 1;
                         test_string = String::from("balloon").chars().collect::<Vec<char>>();
                         i = 0;
@@ -42,7 +42,7 @@ impl Solution {
             i2 = 0;
         }
 
-        return count;
+        count
     }
 }
 

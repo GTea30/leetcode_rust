@@ -17,16 +17,10 @@ impl Solution {
             let new_alt = altitudes[altitudes.len() - 1] + delta_altitude;
             altitudes.push(new_alt);
         }
-        return *altitudes
+        *altitudes
             .iter()
-            .reduce(|x: &i32, acc: &i32| {
-                if x > acc {
-                    return x;
-                } else {
-                    return acc;
-                }
-            })
-            .unwrap();
+            .reduce(|x: &i32, acc: &i32| if x > acc { x } else { acc })
+            .unwrap()
     }
 }
 
