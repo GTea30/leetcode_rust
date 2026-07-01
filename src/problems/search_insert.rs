@@ -32,14 +32,14 @@ fn test_01() {
 
 #[test]
 fn test_02() {
-    let nums = vec![1,3,5,6];
+    let nums = vec![1, 3, 5, 6];
     let target = 2;
-    assert_eq!(Solution::search_insert(nums, target),1);
+    assert_eq!(Solution::search_insert(nums, target), 1);
 }
 
 #[test]
 fn test_03() {
-    let nums = vec![1,3,5,6];
+    let nums = vec![1, 3, 5, 6];
     let target = 7;
     assert_eq!(Solution::search_insert(nums, target), 4)
 }

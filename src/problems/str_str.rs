@@ -33,7 +33,7 @@ impl Solution {
                 }
                 needle_i = 0;
                 if (needle.len() - needle_i) > (haystack.len() - haystack_i) {
-                    return -1
+                    return -1;
                 }
             }
         }
