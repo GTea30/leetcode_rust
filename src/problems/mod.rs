@@ -4,6 +4,7 @@ pub mod merge_two_lists;
 pub mod min_operations;
 pub mod remove_duplicates;
 pub mod remove_element;
+pub mod str_str;
 
 #[allow(unused)]
 struct Solution {}
