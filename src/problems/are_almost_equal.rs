@@ -11,6 +11,10 @@ impl Solution {
     /// *if it is possible to make both strings equal by performing **at most one string swap** on **exactly one** of the strings.*
     /// Otherwise return `false`
     pub fn are_almost_equal(s1: String, s2: String) -> bool {
+        // Return true if the strings are the same;
+        if s1 == s2 {
+            return true;
+        }
         todo!();        
     }
 }
