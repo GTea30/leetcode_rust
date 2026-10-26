@@ -1,3 +1,4 @@
+pub mod are_almost_equal;
 pub mod find_highest_altitude;
 pub mod length_of_last_word;
 pub mod maximum_number_of_balloons;
