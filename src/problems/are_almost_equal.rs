@@ -28,7 +28,7 @@ impl Solution {
     }
 
     /// swaps s1[n] with every item s1[n+1..] and checks equality
-    fn string_swap(s1: &str, n: usize, s2: &str) -> bool{
+    fn string_swap(s1: &str, n: usize, s2: &str) -> bool {
         let mut i = n + 1;
         let n_char: char = s1.chars().nth(n).expect("Not a character");
         while i < s1.len() {
