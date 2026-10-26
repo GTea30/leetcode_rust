@@ -18,16 +18,17 @@ impl Solution {
         }
         // Generally speaking: For s1: swap s1[n] and s1[n + 1:-1]. Check equality at every swap.
         // How do we swap?
-        for n in 0..s1.len() {
-            let test_string: String = Solution::string_swap(&s1, n);
-            if test_string == s2 {
+        for n in 0..(s1.len() - 1) {
+            let result: bool = Solution::string_swap(&s1, n, &s2);
+            if result {
                 return true;
             }
         }
         false
     }
 
-    fn string_swap(s1: &str, n: usize) -> String{
+    /// swaps s1[n] with every item s1[n+1..] and checks equality
+    fn string_swap(s1: &str, n: usize, s2: &str) -> bool{
         todo!()
     }
 }
