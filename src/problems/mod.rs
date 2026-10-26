@@ -7,6 +7,7 @@ pub mod remove_duplicates;
 pub mod remove_element;
 pub mod search_insert;
 pub mod str_str;
+pub mod are_almost_equal;
 
 #[allow(unused)]
 struct Solution {}
