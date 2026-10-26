@@ -16,7 +16,19 @@ impl Solution {
         if s1 == s2 {
             return true;
         }
-        todo!();        
+        // Generally speaking: For s1: swap s1[n] and s1[n + 1:-1]. Check equality at every swap.
+        // How do we swap?
+        for n in 0..s1.len() {
+            let test_string: String = Solution::string_swap(&s1, n);
+            if test_string == s2 {
+                return true;
+            }
+        }
+        false
+    }
+
+    fn string_swap(s1: &str, n: usize) -> String{
+        todo!()
     }
 }
 
