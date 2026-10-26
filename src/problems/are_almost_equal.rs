@@ -29,7 +29,30 @@ impl Solution {
 
     /// swaps s1[n] with every item s1[n+1..] and checks equality
     fn string_swap(s1: &str, n: usize, s2: &str) -> bool{
-        todo!()
+        let mut i = n + 1;
+        let n_char: char = s1.chars().nth(n).expect("Not a character");
+        while i < s1.len() {
+            let i_char: char = s1.chars().nth(i).expect("Not a character");
+            let new_string: String = s1
+                .chars()
+                .enumerate()
+                .map(|(index, value)| {
+                    if index == n {
+                        return i_char;
+                    } else if index == i {
+                        return n_char;
+                    }
+                    value
+                })
+                .collect();
+
+            if new_string == s2 {
+                return true;
+            }
+
+            i += 1;
+        }
+        false
     }
 }
 
