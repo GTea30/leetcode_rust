@@ -14,3 +14,24 @@ impl Solution {
         todo!();        
     }
 }
+
+#[test]
+fn example_01() {
+    let s1: String = String::from("bank");
+    let s2: String = String::from("kanb");
+    assert!(Solution::are_almost_equal(s1, s2));
+}
+
+#[test]
+fn example_02() {
+    let s1: String = String::from("attack");
+    let s2: String = String::from("defend");
+    assert!(!Solution::are_almost_equal(s1, s2));
+}
+
+#[test]
+fn example_03() {
+    let s1: String = String::from("kelb");
+    let s2: String = String::from("kelb");
+    assert!(Solution::are_almost_equal(s1, s2));
+}
