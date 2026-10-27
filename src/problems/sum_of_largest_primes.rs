@@ -16,3 +16,15 @@ impl Solution {
         todo!();
     }
 }
+
+#[test]
+fn example_01() {
+    let s = String::from("12234");
+    assert_eq!(Solution::sum_of_largest_primes(s), 1469);
+}
+
+#[test]
+fn example_02() {
+    let s = String::from("111");
+    assert_eq!(Solution::sum_of_largest_primes(s), 11);
+}
