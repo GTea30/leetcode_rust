@@ -11,6 +11,10 @@ impl Solution {
     ///   The resulting string will be `"dcbaefd"`.
     #[allow(unused)]
     pub fn reverse_prefix(word: String, ch: char) -> String {
+        // If the char is not in word, return the word
+        if !word.contains(ch) {
+            return word;
+        }
         todo!();        
     }
 }
