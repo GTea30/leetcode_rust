@@ -36,6 +36,7 @@ fn example_01() {
     assert_eq!(Solution::odd_cells(m, n, indices), 6);
 }
 
+#[test]
 fn example_02() {
     let m = 2;
     let n = 2;
