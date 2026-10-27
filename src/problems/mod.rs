@@ -8,6 +8,7 @@ pub mod remove_duplicates;
 pub mod remove_element;
 pub mod search_insert;
 pub mod str_str;
+pub mod reverse_prefix;
 
 #[allow(unused)]
 struct Solution {}
