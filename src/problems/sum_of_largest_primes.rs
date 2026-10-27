@@ -13,6 +13,11 @@ impl Solution {
     /// an integer, any leading zeroes are ignored.
     #[allow(unused)]
     pub fn sum_of_largest_primes(s: String) -> i64 {
+        // Find all possible substrings of scrambling s. Add them to a vec if 
+        // they're prime.
+        //
+        // Until the vec is size 3, find all possible substrings of scrambling 
+        // s with decrementing length.
         todo!();
     }
 }
