@@ -35,6 +35,21 @@ impl Solution {
         }
         todo!();
     }
+
+    fn is_prime(n: u64) -> bool {
+        if n.is_multiple_of(2) {
+            return false;
+        }
+        let mut i = 3;
+        while i < n.isqrt() + 1 {
+            if n.is_multiple_of(i) {
+                return false;
+            }
+            i += 2;
+        }
+
+        true
+    }
 }
 
 #[test]
