@@ -15,25 +15,7 @@ impl Solution {
     pub fn sum_of_largest_primes(s: String) -> i64 {
         let mut prime_vec: Vec<i64> = Vec::new();
 
-        // Find all possible substrings of scrambling s. Add them to a vec if 
-        // they're prime.
-        Solution::find_all_prime_substrings(&s, s.len(), &mut prime_vec);
-
-        // Until the vec is size 3, find all possible substrings of scrambling 
-        // s with decrementing length.
-        let mut l = s.len() as i32 - 1;
-        while prime_vec.len() < 3 || l >= 0 {
-            Solution::find_all_prime_substrings(&s, l as usize, &mut prime_vec);
-            l -= 1;
-        }
         prime_vec.iter().sum()
-    }
-
-    fn find_all_prime_substrings(s: &str, l: usize, prime_vec: &mut Vec<i64>) {
-        if prime_vec.len() >= 3 {
-            return;
-        }
-        todo!();
     }
 
     fn is_prime(n: u64) -> bool {
