@@ -15,16 +15,24 @@ impl Solution {
     pub fn sum_of_largest_primes(s: String) -> i64 {
         let mut prime_vec: Vec<i64> = Vec::new();
 
+        if Solution::is_prime(s.parse::<i64>().expect("Not a number")) {
+            prime_vec.push(s.parse::<i64>().expect("Not a number"));
+        }
+
+        let mut l = s.len() - 1;
+        // While l is >= 0, move the slice around (`&s[start..start + n]`).
+        // If prime_vec is ever greater than 3, break;
+
         prime_vec.iter().sum()
     }
 
-    fn is_prime(n: u64) -> bool {
-        if n.is_multiple_of(2) {
+    fn is_prime(n: i64) -> bool {
+        if n % 2 == 0 {
             return false;
         }
         let mut i = 3;
         while i < n.isqrt() + 1 {
-            if n.is_multiple_of(i) {
+            if n % i == 0 {
                 return false;
             }
             i += 2;
