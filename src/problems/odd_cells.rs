@@ -30,12 +30,20 @@ impl Solution {
         todo!();
     }
 
-    fn increment_rows(matrix: &mut Vec<Vec<i32>>, r: i32) {
-        todo!();
+    fn increment_rows(matrix: &mut [Vec<i32>], r: i32) {
+        let mut ptr = 0;
+        while ptr < matrix[r as usize].len() {
+            matrix[r as usize][ptr] += 1;
+            ptr += 1;
+        }
     }
 
-    fn increment_columns(matrix: &mut Vec<Vec<i32>>, r: i32) {
-        todo!();
+    fn increment_columns(matrix: &mut [Vec<i32>], c: i32) {
+        let mut ptr = 0;
+        while ptr < matrix.len() {
+            matrix[ptr][c as usize] += 1;
+            ptr += 1;
+        }
     }
 }
 
