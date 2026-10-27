@@ -14,3 +14,27 @@ impl Solution {
         todo!();        
     }
 }
+
+#[test]
+fn example_01() {
+    let word = String::from("abcdefd");
+    let ch = 'd';
+
+    assert_eq!(Solution::reverse_prefix(word, ch), String::from("dcbaefd"));
+}
+
+#[test]
+fn example_02() {
+    let word = String::from("xyxzxe");
+    let ch = 'z';
+
+    assert_eq!(Solution::reverse_prefix(word, ch), String::from("zxyxxe"));
+}
+
+#[test]
+fn example_03() {
+    let word = String::from("abcd");
+    let ch = 'z';
+
+    assert_eq!(Solution::reverse_prefix(word, ch), String::from("abcd"));
+}
