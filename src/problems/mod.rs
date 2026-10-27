@@ -6,9 +6,9 @@ pub mod merge_two_lists;
 pub mod min_operations;
 pub mod remove_duplicates;
 pub mod remove_element;
+pub mod reverse_prefix;
 pub mod search_insert;
 pub mod str_str;
-pub mod reverse_prefix;
 
 #[allow(unused)]
 struct Solution {}
