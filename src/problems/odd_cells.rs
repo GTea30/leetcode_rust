@@ -22,7 +22,19 @@ impl Solution {
         }
 
         // for each vector in indices, increment a row or column n number of times
+        for i in indices {
+            Solution::increment_rows(&mut matrix, i[0]);
+            Solution::increment_columns(&mut matrix, i[1]);
+        }
         // Count odd cells
+        todo!();
+    }
+
+    fn increment_rows(matrix: &mut Vec<Vec<i32>>, r: i32) {
+        todo!();
+    }
+
+    fn increment_columns(matrix: &mut Vec<Vec<i32>>, r: i32) {
         todo!();
     }
 }
