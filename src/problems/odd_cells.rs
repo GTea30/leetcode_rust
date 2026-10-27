@@ -17,7 +17,7 @@ impl Solution {
     pub fn odd_cells(m: i32, n: i32, indices: Vec<Vec<i32>>) -> i32 {
         // Initialize matrix as an array
         let mut matrix: Vec<Vec<i32>> = Vec::new();
-        for columns in (0..m + 1) {
+        for columns in (0..m) {
             matrix.push(vec![0;n as usize]);
         }
 
@@ -71,5 +71,5 @@ fn example_02() {
     let n = 2;
     let indices = vec![vec![1, 1], vec![0, 0]];
 
-    assert_eq!(Solution::odd_cells(m, n, indices), 6);
+    assert_eq!(Solution::odd_cells(m, n, indices), 0);
 }
