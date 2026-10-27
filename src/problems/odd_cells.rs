@@ -27,7 +27,16 @@ impl Solution {
             Solution::increment_columns(&mut matrix, i[1]);
         }
         // Count odd cells
-        todo!();
+        let mut count = 0;
+        for y in &matrix {
+            for x in y {
+                if x % 2 != 0 {
+                    count += 1;
+                }
+            }
+        }
+
+        count
     }
 
     fn increment_rows(matrix: &mut [Vec<i32>], r: i32) {
