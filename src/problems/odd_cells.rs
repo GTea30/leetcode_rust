@@ -18,7 +18,7 @@ impl Solution {
         // Initialize matrix as an array
         let mut matrix: Vec<Vec<i32>> = Vec::new();
         for columns in (0..m) {
-            matrix.push(vec![0;n as usize]);
+            matrix.push(vec![0; n as usize]);
         }
 
         // for each vector in indices, increment a row or column n number of times
