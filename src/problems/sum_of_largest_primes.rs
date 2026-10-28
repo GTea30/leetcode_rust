@@ -40,6 +40,9 @@ impl Solution {
     }
 
     fn is_prime(n: i64) -> bool {
+        if n == 2 {
+            return true;
+        }
         if n % 2 == 0 || n == 1 {
             return false;
         }
@@ -77,4 +80,13 @@ fn example_01() {
 fn example_02() {
     let s = String::from("111");
     assert_eq!(Solution::sum_of_largest_primes(s), 11);
+}
+
+#[test]
+fn case_01() {
+    let s = String::from("50393");
+    assert_eq!(Solution::sum_of_largest_primes(s), 5547);
+    // 5039
+    // 503
+    // 5
 }
