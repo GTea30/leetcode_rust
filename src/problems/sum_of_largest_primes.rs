@@ -23,7 +23,7 @@ impl Solution {
 
         // While l is >= 0, move the slice around (`&s[start..start + n]`).
         // If prime_vec is ever greater than 3, break;
-        while prime_vec.len() < 3 && l >= 0 {
+        while prime_vec.len() < 3 && l > 0 {
             let mut start: usize = 0;
             while l + (start as i32) <= s.len() as i32 {
                 let sliced_s = &s[start..start+l as usize];
@@ -40,7 +40,7 @@ impl Solution {
     }
 
     fn is_prime(n: i64) -> bool {
-        if n % 2 == 0 {
+        if n % 2 == 0 || n == 1 {
             return false;
         }
         let mut i = 3;
@@ -59,10 +59,8 @@ impl Solution {
         // Checks if the vec's length is <= 3.
         // If so, removes the smallest items until length is <= 3
         
-        if v.len() <=3 {
-            return;
-        }
         v.sort_by(|a, b| b.cmp(a));
+        v.dedup();
         while v.len() > 3 {
             v.pop();
         }
