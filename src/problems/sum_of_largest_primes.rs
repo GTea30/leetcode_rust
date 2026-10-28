@@ -30,6 +30,7 @@ impl Solution {
                 if Solution::is_prime(sliced_s.parse::<i64>().expect("Not a number")) {
                     prime_vec.push(s.parse::<i64>().expect("Not a number"));
                 }
+                Solution::prune_vec(&mut prime_vec);
                 start += 1;
             }
             l -= 1;
@@ -51,6 +52,12 @@ impl Solution {
         }
 
         true
+    }
+
+    fn prune_vec(v: &mut Vec<i64>) {
+        // Checks if the vec's length is <= 3.
+        // If so, removes the smallest items until length is <= 3
+        todo!();
     }
 }
 
