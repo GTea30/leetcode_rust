@@ -25,14 +25,14 @@ impl Solution {
         // If prime_vec is ever greater than 3, break;
         while prime_vec.len() < 3 && l >= 0 {
             let mut start: usize = 0;
-            while l + (start as i32) < s.len() as i32 {
+            while l + (start as i32) <= s.len() as i32 {
                 let sliced_s = &s[start..start+l as usize];
                 if Solution::is_prime(sliced_s.parse::<i64>().expect("Not a number")) {
-                    prime_vec.push(s.parse::<i64>().expect("Not a number"));
+                    prime_vec.push(sliced_s.parse::<i64>().expect("Not a number"));
                 }
-                Solution::prune_vec(&mut prime_vec);
                 start += 1;
             }
+            Solution::prune_vec(&mut prime_vec);
             l -= 1;
         }
 
@@ -45,6 +45,7 @@ impl Solution {
         }
         let mut i = 3;
         while i < n.isqrt() + 1 {
+
             if n % i == 0 {
                 return false;
             }
