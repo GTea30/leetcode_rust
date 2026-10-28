@@ -23,7 +23,7 @@ impl Solution {
 
         // While l is >= 0, move the slice around (`&s[start..start + n]`).
         // If prime_vec is ever greater than 3, break;
-        while prime_vec.len() < 3 && l > 0 {
+        while l > 0 {
             let mut start: usize = 0;
             while l + (start as i32) <= s.len() as i32 {
                 let sliced_s = &s[start..start+l as usize];
@@ -32,9 +32,9 @@ impl Solution {
                 }
                 start += 1;
             }
-            Solution::prune_vec(&mut prime_vec);
             l -= 1;
         }
+        Solution::prune_vec(&mut prime_vec);
 
         prime_vec.iter().sum()
     }
