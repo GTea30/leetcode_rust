@@ -57,7 +57,14 @@ impl Solution {
     fn prune_vec(v: &mut Vec<i64>) {
         // Checks if the vec's length is <= 3.
         // If so, removes the smallest items until length is <= 3
-        todo!();
+        
+        if v.len() <=3 {
+            return;
+        }
+        v.sort_by(|a, b| b.cmp(a));
+        while v.len() > 3 {
+            v.pop();
+        }
     }
 }
 
