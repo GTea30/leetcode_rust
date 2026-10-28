@@ -26,7 +26,7 @@ impl Solution {
         while l > 0 {
             let mut start: usize = 0;
             while l + (start as i32) <= s.len() as i32 {
-                let sliced_s = &s[start..start+l as usize];
+                let sliced_s = &s[start..start + l as usize];
                 if Solution::is_prime(sliced_s.parse::<i64>().expect("Not a number")) {
                     prime_vec.push(sliced_s.parse::<i64>().expect("Not a number"));
                 }
@@ -48,7 +48,6 @@ impl Solution {
         }
         let mut i = 3;
         while i < n.isqrt() + 1 {
-
             if n % i == 0 {
                 return false;
             }
@@ -61,7 +60,7 @@ impl Solution {
     fn prune_vec(v: &mut Vec<i64>) {
         // Checks if the vec's length is <= 3.
         // If so, removes the smallest items until length is <= 3
-        
+
         v.sort_by(|a, b| b.cmp(a));
         v.dedup();
         while v.len() > 3 {
