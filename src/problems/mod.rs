@@ -10,6 +10,7 @@ pub mod remove_element;
 pub mod reverse_prefix;
 pub mod search_insert;
 pub mod str_str;
+pub mod sum_of_largest_primes;
 
 #[allow(unused)]
 struct Solution {}
