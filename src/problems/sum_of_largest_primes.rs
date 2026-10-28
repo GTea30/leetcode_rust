@@ -19,9 +19,21 @@ impl Solution {
             prime_vec.push(s.parse::<i64>().expect("Not a number"));
         }
 
-        let mut l = s.len() - 1;
+        let mut l = s.len() as i32 - 1;
+
         // While l is >= 0, move the slice around (`&s[start..start + n]`).
         // If prime_vec is ever greater than 3, break;
+        while prime_vec.len() < 3 && l >= 0 {
+            let mut start: usize = 0;
+            while l + (start as i32) < s.len() as i32 {
+                let sliced_s = &s[start..start+l as usize];
+                if Solution::is_prime(sliced_s.parse::<i64>().expect("Not a number")) {
+                    prime_vec.push(s.parse::<i64>().expect("Not a number"));
+                }
+                start += 1;
+            }
+            l -= 1;
+        }
 
         prime_vec.iter().sum()
     }
