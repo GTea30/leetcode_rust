@@ -19,7 +19,6 @@ impl Solution {
         // the next digit.
         let mut new_digits: Vec<i32> = vec![0; digits.len()];
 
-        let mut carry_flag = false;
         let mut incrementing = true;
 
         for ptr in (0..digits.len()).rev() {
