@@ -13,7 +13,31 @@ impl Solution {
     /// digits.
     #[allow(unused)]
     pub fn plus_one(digits: Vec<i32>) -> Vec<i32> {
-        todo!();
+        let mut new_digits: Vec<i32> = vec![0;digits.len()];
+        let mut carry_flag = false;
+
+        let mut incrementing = true;
+
+        for ptr in (0..digits.len()).rev() {
+            if !incrementing {
+                new_digits[ptr] = digits[ptr];
+                continue;
+            }
+
+            if digits[ptr] < 9 {
+                new_digits[ptr] = digits[ptr] + 1;
+                incrementing = false;
+            }
+            else if ptr == 0 {
+                new_digits.insert(0, 1);
+            }
+        }
+
+        // Increemnt the last item in the vec.
+        //
+        // If the incrementved value would equal 10, reset to 0 and increment
+        // the next digit.
+        new_digits
     }
 }
 
