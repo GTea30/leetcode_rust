@@ -16,3 +16,21 @@ impl Solution {
         todo!();
     }
 }
+
+#[test]
+fn example_01() {
+    let digits = vec![1, 2, 3];
+    assert_eq!(Solution::plus_one(digits), vec![1, 2, 4]);
+}
+
+#[test]
+fn example_02() {
+    let digits = vec![4, 3, 2, 1];
+    assert_eq!(Solution::plus_one(digits), vec![4, 3, 2, 2]);
+}
+
+#[test]
+fn example_03() {
+    let digits = vec![9];
+    assert_eq!(Solution::plus_one(digits), vec![1, 0]);
+}
