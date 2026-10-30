@@ -5,6 +5,7 @@ pub mod maximum_number_of_balloons;
 pub mod merge_two_lists;
 pub mod min_operations;
 pub mod odd_cells;
+pub mod plus_one;
 pub mod remove_duplicates;
 pub mod remove_element;
 pub mod reverse_prefix;
