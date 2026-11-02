@@ -17,14 +17,10 @@ impl Solution {
 
         while !a_finished_flag || !b_finished_flag  || bank > 0{
             // Addition
-            bank += Solution::index_string(&a, a_ptr, a_finished_flag) + Solution::index_string(&b, b_ptr, b_finished_flag);
-            if bank % 2 == 0 {
-                new_string.insert(0, '0');
-            } 
-            else {
-                new_string.insert(0, '1');
-            }
-            bank = bank.saturating_sub(1);
+            let value: u8 = Solution::index_string(&a, a_ptr, a_finished_flag) + Solution::index_string(&b, b_ptr, b_finished_flag) + bank;
+            let remainder = value % 2;
+            bank = (value as f32 / 2.0).floor() as u8;
+            new_string.insert(0, remainder.to_string().chars().nth(0).expect("Not a char"));
 
             if a_ptr == 0 {
                 a_finished_flag = true;
@@ -32,6 +28,7 @@ impl Solution {
             if b_ptr == 0 {
                 b_finished_flag = true;
             }
+
             a_ptr = a_ptr.saturating_sub(1);
             b_ptr = b_ptr.saturating_sub(1);
         }
@@ -40,7 +37,7 @@ impl Solution {
         new_string
     }
 
-    fn index_string(s: &str, i: usize, finished_flag: bool) -> u32 {
+    fn index_string(s: &str, i: usize, finished_flag: bool) -> u8 {
         if finished_flag {
             return 0
         }
