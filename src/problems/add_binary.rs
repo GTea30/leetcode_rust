@@ -15,9 +15,11 @@ impl Solution {
 
         let mut finished_flag = false;
 
-        while !a_finished_flag || !b_finished_flag  || bank > 0{
+        while !a_finished_flag || !b_finished_flag || bank > 0 {
             // Addition
-            let value: u8 = Solution::index_string(&a, a_ptr, a_finished_flag) + Solution::index_string(&b, b_ptr, b_finished_flag) + bank;
+            let value: u8 = Solution::index_string(&a, a_ptr, a_finished_flag)
+                + Solution::index_string(&b, b_ptr, b_finished_flag)
+                + bank;
             let remainder = value % 2;
             bank = (value as f32 / 2.0).floor() as u8;
             new_string.insert(0, remainder.to_string().chars().nth(0).expect("Not a char"));
@@ -39,13 +41,13 @@ impl Solution {
 
     fn index_string(s: &str, i: usize, finished_flag: bool) -> u8 {
         if finished_flag {
-            return 0
+            return 0;
         }
         if s.chars().nth(i).expect("Not a character") == '0' {
             0
         } else {
-        1
-    }
+            1
+        }
     }
 }
 
