@@ -65,3 +65,10 @@ fn example_02() {
     let b = String::from("1011");
     assert_eq!(Solution::add_binary(a, b), String::from("10101"));
 }
+
+#[test]
+fn example_03() {
+    let a = String::from("1111");
+    let b = String::from("1111");
+    assert_eq!(Solution::add_binary(a, b), String::from("11110"));
+}
