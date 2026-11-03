@@ -12,13 +12,24 @@ impl Solution {
     /// For example, do not use `pow(x, 0.5)` in c++ or (x ** 0.5) in python.
     #[allow(unused)]
     pub fn my_sqrt(x: i32) -> i32 {
-        let mut ptr = 1;
+        let mut min = 0.0;
+        let mut max = x as f32 - 1.0;
+        let mut ptr = (min + max) / 2.0;
 
-        while (ptr + 1) * (ptr + 1) <= x {
-            ptr += 1;
+        loop {
+            let mut deviation = (ptr * ptr - x as f32);
+            if deviation < 0.10 && deviation > -0.10 {
+                break;
+            }
+            else if (ptr * ptr - x as f32) > 0.10 {
+                max = ptr;
+            } else if (ptr * ptr - x as f32) < -0.10 {
+                min = ptr;
+            }
+            ptr = (min + max) / 2.0;
         }
 
-        ptr
+        ptr.floor() as i32
     }
 }
 
@@ -32,4 +43,10 @@ fn example_01() {
 fn example_02() {
     let x = 8;
     assert_eq!(Solution::my_sqrt(x), 2);
+}
+
+#[test]
+fn example_03() {
+    let x = 2147395600;
+    assert_eq!(Solution::my_sqrt(x), 46340);
 }
