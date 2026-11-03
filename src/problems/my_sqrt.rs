@@ -15,3 +15,15 @@ impl Solution {
         todo!();
     }
 }
+
+#[test]
+fn example_01() {
+    let x = 4;
+    assert_eq!(Solution::my_sqrt(x), 2);
+}
+
+#[test]
+fn example_02() {
+    let x = 8;
+    assert_eq!(Solution::my_sqrt(x), 2);
+}
