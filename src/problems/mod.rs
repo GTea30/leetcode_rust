@@ -5,6 +5,7 @@ pub mod length_of_last_word;
 pub mod maximum_number_of_balloons;
 pub mod merge_two_lists;
 pub mod min_operations;
+pub mod my_sqrt;
 pub mod odd_cells;
 pub mod plus_one;
 pub mod remove_duplicates;
