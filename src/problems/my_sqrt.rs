@@ -12,7 +12,13 @@ impl Solution {
     /// For example, do not use `pow(x, 0.5)` in c++ or (x ** 0.5) in python.
     #[allow(unused)]
     pub fn my_sqrt(x: i32) -> i32 {
-        todo!();
+        let mut ptr = 1;
+
+        while (ptr + 1) * (ptr + 1) <= x {
+            ptr += 1;
+        }
+
+        ptr
     }
 }
 
