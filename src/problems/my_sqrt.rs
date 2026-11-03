@@ -50,3 +50,9 @@ fn example_03() {
     let x = 2147395600;
     assert_eq!(Solution::my_sqrt(x), 46340);
 }
+
+#[test]
+fn example_04() {
+    let x = 0;
+    assert_eq!(Solution::my_sqrt(x), 0);
+}
