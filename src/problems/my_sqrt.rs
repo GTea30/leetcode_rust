@@ -12,7 +12,35 @@ impl Solution {
     /// For example, do not use `pow(x, 0.5)` in c++ or (x ** 0.5) in python.
     #[allow(unused)]
     pub fn my_sqrt(x: i32) -> i32 {
-        todo!();
+        // Max sqrt of int is 46340
+        // Square Root of X is always less than half (unless x <= 4);
+        let mut ptr = {
+            let mut return_value = 1.0;
+            if x <= 1 {
+                return_value = x as f32;
+            } else {
+                return_value = x as f32 / 2.0;
+
+                if return_value > 46340.0 {
+                    return_value = 46340.0;
+                }
+            }
+            return_value
+        };
+
+        if ptr as i32 * ptr as i32 == x {
+            return ptr as i32;
+        }
+
+        let mut diff = 1.0;
+        let accuracy: f32 = 0.01;
+        while diff > accuracy {
+            let n = 0.5 * (ptr + (x as f32 / ptr));
+            diff = ptr - n;
+            ptr = n;
+        }
+
+        ptr as i32
     }
 }
 
