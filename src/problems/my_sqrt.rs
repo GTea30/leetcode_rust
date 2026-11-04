@@ -13,23 +13,38 @@ impl Solution {
     #[allow(unused)]
     pub fn my_sqrt(x: i32) -> i32 {
         let mut min = 0.0;
-        let mut max = x as f32 - 1.0;
-        let mut ptr = (min + max) / 2.0;
+        let mut max = {
+            let mut val = 0.0;
+            if x > 46341 {
+                val = 46341.0
+            } else {
+                val = (x.saturating_add(1)) as f32;
+            }
+            val
+        };
+        let mut ptr = max / 2.0;
+
+        let acceptable_deviation = 0.01;
 
         loop {
             let mut deviation = (ptr * ptr - x as f32);
-            if deviation < 0.10 && deviation > -0.10 {
+            if deviation < acceptable_deviation && deviation > -acceptable_deviation {
                 break;
             }
-            else if (ptr * ptr - x as f32) > 0.10 {
+            else if (ptr * ptr - x as f32) > acceptable_deviation {
                 max = ptr;
-            } else if (ptr * ptr - x as f32) < -0.10 {
+            } else if (ptr * ptr - x as f32) < -acceptable_deviation {
                 min = ptr;
             }
             ptr = (min + max) / 2.0;
         }
+        let next_possible_int = min.floor() as i32 + 1;
+        let (possible_value, overflow) = next_possible_int.overflowing_mul(next_possible_int);
+        if !overflow && possible_value == x {
+            return next_possible_int;
+        }
 
-        ptr.floor() as i32
+        min.floor() as i32
     }
 }
 
@@ -55,4 +70,40 @@ fn example_03() {
 fn example_04() {
     let x = 0;
     assert_eq!(Solution::my_sqrt(x), 0);
+}
+
+#[test]
+fn example_05() {
+    let x = 1;
+    assert_eq!(Solution::my_sqrt(x), 1);
+}
+
+#[test]
+fn example_06() {
+    let x = 1024;
+    assert_eq!(Solution::my_sqrt(x), 32);
+}
+
+#[test]
+fn example_07() {
+    let x = 9;
+    assert_eq!(Solution::my_sqrt(x),3);
+}
+
+#[test]
+fn example_08() {
+    let x = 2147395599;
+    assert_eq!(Solution::my_sqrt(x), 46339);
+}
+
+#[test]
+fn example_09() {
+    let x = 2;
+    assert_eq!(Solution::my_sqrt(x), 1);
+}
+
+#[test]
+fn example_10() {
+    let x = 2147483647;
+    assert_eq!(Solution::my_sqrt(x), 46340);
 }
