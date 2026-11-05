@@ -40,7 +40,10 @@ impl Solution {
             ptr = n;
         }
 
-        ptr as i32
+        if ptr as i32 * ptr as i32 > x {
+            return ptr as i32 - 1;
+        }
+        ptr.floor() as i32
     }
 }
 
