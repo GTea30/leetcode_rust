@@ -3,7 +3,7 @@ use super::Solution;
 impl Solution {
     /// https://leetcode.com/problems/sqrtx/
     ///
-    /// Given a non-negative integer `x`, return the square root of `x` 
+    /// Given a non-negative integer `x`, return the square root of `x`
     /// rounded down to the nearest integer. The returned integer should be
     /// non-negative as well.
     ///
@@ -86,7 +86,7 @@ fn example_06() {
 #[test]
 fn example_07() {
     let x = 9;
-    assert_eq!(Solution::my_sqrt(x),3);
+    assert_eq!(Solution::my_sqrt(x), 3);
 }
 
 #[test]
